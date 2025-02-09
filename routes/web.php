@@ -1,21 +1,26 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThemeController;
 
+//Theme route
 Route::controller(ThemeController::class)->name('theme.')->group(
     function(){
         Route::get('/contact','contact')->name('contact');
         Route::get('/','index')->name('index');
         Route::get('/category','category')->name('category');
         Route::get('/single-blog','singleBlog')->name('singleBlog');
-        // Route::get('/login','login')->name('login');
-        // Route::get('/register','register')->name('register');
-        
-
     }
 );
+
+//Subscriber route
+Route::post('/subscriber/store',[SubscriberController::class,'store'])->name('subscriber.store');
+
+//contact route
+Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
 
 
 Route::get('/dashboard', function () {
