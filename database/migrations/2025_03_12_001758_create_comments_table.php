@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('message')->nullable();
+            $table->bigInteger('blog_id')->unsigned()->nullable();
+            $table->foreign('blog_id')->references('id')->on('blogs');
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\CommentController;
 
 //Theme route
 Route::controller(ThemeController::class)->name('theme.')->group(
@@ -22,6 +23,9 @@ Route::post('/subscriber/store',[SubscriberController::class,'store'])->name('su
 
 //contact route
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
+
+//comment route
+Route::post('/comment/store',[CommentController::class,'store'])->name('comment.store');
 
 //blog route
 Route::get('/my-blogs',[BlogController::class,'myBlogs'])->name('blogs.my-blogs');
