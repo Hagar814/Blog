@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ContactController;
@@ -11,8 +12,8 @@ Route::controller(ThemeController::class)->name('theme.')->group(
     function(){
         Route::get('/contact','contact')->name('contact');
         Route::get('/','index')->name('index');
-        Route::get('/category','category')->name('category');
-        Route::get('/single-blog','singleBlog')->name('singleBlog');
+        Route::get('/category/{id}','category')->name('category');
+       // Route::get('/single-blog','singleBlog')->name('singleBlog');
     }
 );
 
@@ -22,6 +23,9 @@ Route::post('/subscriber/store',[SubscriberController::class,'store'])->name('su
 //contact route
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
 
+//blog route
+Route::get('/my-blogs',[BlogController::class,'myBlogs'])->name('blogs.my-blogs');
+Route::resource('blogs',BlogController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
