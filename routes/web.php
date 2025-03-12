@@ -14,7 +14,6 @@ Route::controller(ThemeController::class)->name('theme.')->group(
         Route::get('/contact','contact')->name('contact');
         Route::get('/','index')->name('index');
         Route::get('/category/{id}','category')->name('category');
-       // Route::get('/single-blog','singleBlog')->name('singleBlog');
     }
 );
 
@@ -29,16 +28,6 @@ Route::post('/comment/store',[CommentController::class,'store'])->name('comment.
 
 //blog route
 Route::get('/my-blogs',[BlogController::class,'myBlogs'])->name('blogs.my-blogs');
-Route::resource('blogs',BlogController::class);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::resource('blogs',BlogController::class)->except('index');
 
 require __DIR__.'/auth.php';
